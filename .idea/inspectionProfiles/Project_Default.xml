@@ -1,0 +1,43 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="6">
+            <item index="0" class="java.lang.String" itemvalue="numpy" />
+            <item index="1" class="java.lang.String" itemvalue="sklearn" />
+            <item index="2" class="java.lang.String" itemvalue="cpm_kernels" />
+            <item index="3" class="java.lang.String" itemvalue="openai" />
+            <item index="4" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="5" class="java.lang.String" itemvalue="sentence-transformers" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="models.build.*" />
+          <option value="models.t2t.*" />
+          <option value="scripts.collect_models.google_drive_downloader" />
+          <option value="data.dct_utils.cvfunctional.jpeg2dct" />
+          <option value="data.dct_utils.cvfunctional.to_RGB_BGR" />
+          <option value="data.dct_utils.cvfunctional.loads" />
+          <option value="data.dct_utils.cvfunctional.cvimage" />
+          <option value="utils.download" />
+          <option value="utils.mkdir" />
+          <option value="data_loader.config" />
+          <option value="data_loader.hb" />
+          <option value="Config" />
+          <option value="main.*" />
+          <option value="models.t5.modeling_t5.*" />
+          <option value="bianque_v1_v2_app.*" />
+          <option value="bianque_v2_app.*" />
+          <option value="utils.a" />
+          <option value="test.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
