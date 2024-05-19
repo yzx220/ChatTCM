@@ -137,7 +137,6 @@ def decoder_for_chatglm2(args, input):
 
 class Decoder():
     def __init__(self):
-        # print_now() # 调用print_now函数，打印当前的日本标准时间
         pass
 
     def decode(self, args, input):
@@ -147,17 +146,14 @@ class Decoder():
         return response
 
 def data_reader(args):
-    # 创建两个空列表，用于存储问题和答案
+
     questions = []
     answers = []
-    # 创建一个JSON解码器对象，用于解析JSON格式的数据
     decoder = json.JSONDecoder()
 
 
     with open(args.dataset_path,'r',encoding='utf-8') as f:
-        # 读取文件中的所有行，存储在lines列表中
         lines = f.readlines()
-        # 遍历lines列表中的每一行
         for line in lines:
             json_res = decoder.raw_decode(line)[0]
             questions.append(json_res["query"].strip())
@@ -172,7 +168,6 @@ class MyDataset(Dataset):
         self.questions, self.answers = data_reader(args)
         self.len = len(self.questions)
 
-    # 定义一个特殊方法，返回数据集的长度
     def __len__(self):
         return self.len
     def __getitem__(self, index):
@@ -199,15 +194,6 @@ def setup_data_loader(args):
 
     dataset = MyDataset(args)
 
-    # 创建一个PyTorch的数据加载器对象，传入以下参数：
-    # dataset: 数据集对象
-    # shuffle: 是否打乱数据顺序
-    # batch_size: 每个批次的数据大小
-    # drop_last: 是否丢弃最后一个不完整的批次
-    # num_workers: 工作进程数
-    # worker_init_fn: 工作进程初始化函数
-    # generator: 生成器对象
-    # pin_memory: 是否将数据存储在锁页内存中
     dataloader = torch.utils.data.DataLoader(dataset,
                   shuffle=True,
                   batch_size=args.minibatch_size,
@@ -242,8 +228,6 @@ def create_demo_text(args, cot):
     for i in index_list:
         if cot:
             demo_text += x[i] + " " + z[i] + " "+ "\n\n"
-            # demo_text += x[i] + " " + z[i] + " " + \
-            #              args.direct_answer_trigger_for_fewshot + " " + y[i] + ".\n\n"
         else:
 
             demo_text += x[i] + " " + args.direct_answer_trigger_for_fewshot + " " + y[i] + ".\n\n"
