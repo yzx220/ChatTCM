@@ -7,23 +7,7 @@ import torch
 
 tokenizer = AutoTokenizer.from_pretrained("D:\work\ChatGLM2-6B\model", trust_remote_code=True)
 model = AutoModel.from_pretrained("D:\work\ChatGLM2-6B\model",trust_remote_code=True).quantize(4).cuda()
-# config = AutoConfig.from_pretrained(
-#     "D:\work\ChatGLM2-6B\ptuning\output\\adgen-chatglm2-6b-pt-LR2\checkpoint-1500", trust_remote_code=True, pre_seq_len=128)
 
-
-# prefix_state_dict = torch.load(os.path.join(
-#     "D:\work\ChatGLM2-6B\ptuning\output\\adgen-chatglm2-6b-pt-LR2\checkpoint-1500", "pytorch_model.bin"))
-
-
-# 多显卡支持，使用下面两行代替上面一行，将num_gpus改为你实际的显卡数量
-# from utils import load_model_on_gpus
-# model = load_model_on_gpus("THUDM/chatglm2-6b", num_gpus=2)
-
-# new_prefix_state_dict = {}
-# for k, v in prefix_state_dict.items():
-#         if k.startswith("transformer.prefix_encoder."):
-#             new_prefix_state_dict[k[len("transformer.prefix_encoder."):]] = v
-# model.transformer.prefix_encoder.load_state_dict(new_prefix_state_dict)
 
 model = model.eval()
 
