@@ -178,7 +178,6 @@ class ChatGLM_Ptuning(LLM, ABC):
 
 cql如下：
 ```cql 
-select 公司全称
 MATCH (n)-[:RELATED_TO]->(:Condition {name: '脑萎缩'})RETURN n"
 ```
 
@@ -227,7 +226,7 @@ MATCH (n)-[:RELATED_TO]->(:Condition {name: '脑萎缩'})RETURN n
 
 
 if __name__ == '__main__':
-    
+
     model = ChatGLM_Ptuning(PtuningType.Nothing)
     print(model("你好啊！"))
 
