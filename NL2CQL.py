@@ -227,21 +227,7 @@ MATCH (n)-[:RELATED_TO]->(:Condition {name: '脑萎缩'})RETURN n
 
 
 if __name__ == '__main__':
-    model = ChatGLM_Ptuning(PtuningType.Classify)
-    print(model.classify("2019年哪家公司的负债合计最高？"))
-
-    model.unload_model()
-
-    model = ChatGLM_Ptuning(PtuningType.Keywords)
-    print(model.keywords("2019年哪家公司的负债合计最高？"))
-
-    model.unload_model()
-
-    model = ChatGLM_Ptuning(PtuningType.NL2SQL)
-    print(model.nl2sql("2019年哪家公司的负债合计最高？"))
-
-    model.unload_model()
-
+    
     model = ChatGLM_Ptuning(PtuningType.Nothing)
     print(model("你好啊！"))
 
