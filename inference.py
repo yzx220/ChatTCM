@@ -95,8 +95,6 @@ def main():
     else:
         # 将 demo 赋值为 None
         pass
-
-
     total = 0
     correct_list = []
 
