@@ -19,21 +19,9 @@ from transformers import AutoTokenizer, AutoModel,AutoConfig
 tokenizer = AutoTokenizer.from_pretrained("D:\work\ChatGLM2-6B\model", trust_remote_code=True)
 model = AutoModel.from_pretrained("D:\work\ChatGLM2-6B\model",trust_remote_code=True).quantize(4).cuda()
 def auto_configure_device_map(num_gpus: int) -> Dict[str, int]:
-    # transformer.word_embeddings 占用1层
-    # transformer.final_layernorm 和 lm_head 占用1层
-    # transformer.layers 占用 28 层
-    # 总共30层分配到num_gpus张卡上
     num_trans_layers = 28
     per_gpu_layers = 30 / num_gpus
 
-    # bugfix: 在linux中调用torch.embedding传入的weight,input不在同一device上,导致RuntimeError
-    # windows下 model.device 会被设置成 transformer.word_embeddings.device
-    # linux下 model.device 会被设置成 lm_head.device
-    # 在调用chat或者stream_chat时,input_ids会被放到model.device上
-    # 如果transformer.word_embeddings.device和model.device不同,则会导致RuntimeError
-    # 因此这里将transformer.word_embeddings,transformer.final_layernorm,lm_head都放到第一张卡上
-    # 本文件来源于https://github.com/THUDM/ChatGLM-6B/blob/main/utils.py
-    # 仅此处做少许修改以支持ChatGLM2
     device_map = {
         'transformer.embedding.word_embeddings': 0,
         'transformer.encoder.final_layernorm': 0,
